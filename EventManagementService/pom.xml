@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>taskC</groupId>
-	<artifactId>EventService</artifactId>
+	<artifactId>EventManagementService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>EventService</name>
+	<name>EventManagementService</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
