@@ -8,7 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="TransactionService" />
         <module name="ListingService" />
-        <module name="EventService" />
+        <module name="EvenMangementService" />
       </profile>
     </annotationProcessing>
   </component>
