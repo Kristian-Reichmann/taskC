@@ -1,8 +1,7 @@
-package taskC.ListingService.Service;
+package taskC.ListingService.ServiceTest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import taskC.ListingService.dto.UserDTO;
 import taskC.ListingService.Exceptions.ResourceNotFoundException;
 import taskC.ListingService.Models.User;
 import taskC.ListingService.Repositories.UserRepository;
@@ -24,6 +23,7 @@ public class UserService {
     }
 
     public User createUser(User user) {
+        // No password encoding here
         return userRepository.save(user);
     }
 
@@ -32,6 +32,7 @@ public class UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
         user.setUsername(userDetails.getUsername());
         user.setEmail(userDetails.getEmail());
+        // No password encoding here
         user.setPassword(userDetails.getPassword());
         return userRepository.save(user);
     }

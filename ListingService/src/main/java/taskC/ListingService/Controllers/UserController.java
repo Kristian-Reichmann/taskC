@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import taskC.ListingService.dto.UserDTO;
 import taskC.ListingService.Models.User;
-import taskC.ListingService.Service.UserService;
+import taskC.ListingService.ServiceTest.UserService;
 
 import jakarta.validation.Valid;
 import java.util.List;

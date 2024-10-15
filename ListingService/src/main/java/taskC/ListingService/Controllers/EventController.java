@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import taskC.ListingService.Models.Event;
-import taskC.ListingService.Service.EventService;
+import taskC.ListingService.ServiceTest.EventService;
 
 import jakarta.validation.Valid;
 import java.util.List;

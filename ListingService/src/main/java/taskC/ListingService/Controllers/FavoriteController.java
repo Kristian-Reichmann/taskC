@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import taskC.ListingService.dto.FavoriteDTO;
 import taskC.ListingService.Models.Favorite;
-import taskC.ListingService.Service.FavoriteService;
+import taskC.ListingService.ServiceTest.FavoriteService;
 
 import jakarta.validation.Valid;
 import java.util.List;
