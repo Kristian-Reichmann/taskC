@@ -38,13 +38,13 @@ public class EventController {
                     eventDTO.setIsCancelled(event.getIsCancelled());
                     eventDTO.setIsVirtual(event.getIsVirtual());
                     eventDTO.setIsAgeRestricted(event.getIsAgeRestricted());
-                    eventDTO.setOrganiserContact(event.getContact());
+                    eventDTO.setContact(event.getContact());
                     eventDTO.setAvailableVenues(event.getAvailableVenues());
                     return eventDTO;
                 }).collect(Collectors.toList());
     }
 
-    //Create a new event
+    //Create a new event - There's no way to avoid duplication as id auto-generated if it's left out in the request body
     @PostMapping("/events")
     EventDTO createEvent(@RequestBody Event newEvent) {
         Event event = eventService.createEvent(newEvent);
@@ -63,7 +63,7 @@ public class EventController {
         eventDTO.setIsCancelled(event.getIsCancelled());
         eventDTO.setIsVirtual(event.getIsVirtual());
         eventDTO.setIsAgeRestricted(event.getIsAgeRestricted());
-        eventDTO.setOrganiserContact(event.getContact());
+        eventDTO.setContact(event.getContact());
         eventDTO.setAvailableVenues(event.getAvailableVenues());
         return eventDTO;
     }
@@ -71,6 +71,7 @@ public class EventController {
     //List the specified event
     @GetMapping("/events/{id}")
     EventDTO getEvent(@PathVariable long id) {
+
         EventDTO eventDTO = new EventDTO();
         Event event = eventService.getEvent(id);
         eventDTO.setId(event.getId());
@@ -87,7 +88,7 @@ public class EventController {
         eventDTO.setIsCancelled(event.getIsCancelled());
         eventDTO.setIsVirtual(event.getIsVirtual());
         eventDTO.setIsAgeRestricted(event.getIsAgeRestricted());
-        eventDTO.setOrganiserContact(event.getContact());
+        eventDTO.setContact(event.getContact());
         eventDTO.setAvailableVenues(event.getAvailableVenues());
         return eventDTO;
     }
@@ -111,7 +112,7 @@ public class EventController {
         eventDTO.setIsCancelled(event.getIsCancelled());
         eventDTO.setIsVirtual(event.getIsVirtual());
         eventDTO.setIsAgeRestricted(event.getIsAgeRestricted());
-        eventDTO.setOrganiserContact(event.getContact());
+        eventDTO.setContact(event.getContact());
         eventDTO.setAvailableVenues(event.getAvailableVenues());
         return eventDTO;
     }
@@ -123,6 +124,7 @@ public class EventController {
     }
 
 
+    //Add a venue as an event host
     @PostMapping("/events/{id}/venues/{venueId}")
     EventDTO setEventVenue(@PathVariable long id, @PathVariable long venueId) {
         Event event = eventService.setAvailableVenues(id, venueId);
@@ -141,7 +143,7 @@ public class EventController {
         eventDTO.setIsCancelled(event.getIsCancelled());
         eventDTO.setIsVirtual(event.getIsVirtual());
         eventDTO.setIsAgeRestricted(event.getIsAgeRestricted());
-        eventDTO.setOrganiserContact(event.getContact());
+        eventDTO.setContact(event.getContact());
         eventDTO.setAvailableVenues(event.getAvailableVenues());
         return eventDTO;
     }
@@ -165,7 +167,7 @@ public class EventController {
         eventDTO.setIsCancelled(event.getIsCancelled());
         eventDTO.setIsVirtual(event.getIsVirtual());
         eventDTO.setIsAgeRestricted(event.getIsAgeRestricted());
-        eventDTO.setOrganiserContact(event.getContact());
+        eventDTO.setContact(event.getContact());
         eventDTO.setAvailableVenues(event.getAvailableVenues());
         return eventDTO;
     }

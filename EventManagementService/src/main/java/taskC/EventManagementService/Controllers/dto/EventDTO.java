@@ -7,7 +7,7 @@ import java.util.List;
 
 public class EventDTO {
     private long id;
-    private Contact organiserContact;
+    private Contact contact;
     private String name;
     private String description;
     private String startTime;
@@ -28,8 +28,8 @@ public class EventDTO {
     public void setId(long id) {this.id = id;}
     public long getId() {return id;}
 
-    public void setOrganiserContact(Contact organiserContact) {this.organiserContact = organiserContact;}
-    public Contact getOrganiserContact() {return organiserContact;}
+    public void setContact(Contact contact) {this.contact = contact;}
+    public Contact getContact() {return contact;}
 
     public void setName(String name) {this.name = name;}
     public String getName() {return name;}

@@ -3,6 +3,7 @@ package taskC.EventManagementService.Service;
 import taskC.EventManagementService.Controllers.dto.VenueDTO;
 import taskC.EventManagementService.Models.Event;
 import taskC.EventManagementService.Models.Venue;
+import taskC.EventManagementService.Repositories.ContactRepository;
 import taskC.EventManagementService.Repositories.EventRepository;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.core.ParameterizedTypeReference;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import taskC.EventManagementService.Repositories.VenueRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +20,17 @@ import java.util.stream.Collectors;
 @Service
 public class EventService {
     private final EventRepository eventRepository;
+    private final VenueRepository venueRepository;
+    private final ContactRepository contactRepository;
     private final RestTemplate restTemplate;
     private final ApplicationEventPublisher applicationEventPublisher;
 
-    EventService(EventRepository eventRepository, RestTemplate restTemplate, ApplicationEventPublisher applicationEventPublisher) {
+    EventService(EventRepository eventRepository, ContactRepository contactRepository , RestTemplate restTemplate, ApplicationEventPublisher applicationEventPublisher, VenueRepository venueRepository) {
         this.eventRepository = eventRepository;
+        this.contactRepository = contactRepository;
         this.restTemplate = restTemplate;
         this.applicationEventPublisher = applicationEventPublisher;
+        this.venueRepository = venueRepository;
     }
 
     public List<Event> getAllEvents(){
@@ -36,36 +42,55 @@ public class EventService {
     }
 
     public Event getEvent(long id){
+        System.out.println("Event id: " +id);
         return eventRepository.findById(id).orElseThrow(RuntimeException::new);
     }
 
+    //Update the specified event
     public Event updateEvent(long id, Event updatedEvent){
-
         Event event = eventRepository.findById(id).orElseThrow(RuntimeException::new);
         event.setName(updatedEvent.getName());
         event.setDescription(updatedEvent.getDescription());
+        event.setStartTime(updatedEvent.getStartTime());
+        event.setEndTime(updatedEvent.getEndTime());
+        event.setDuration(updatedEvent.getDuration());
+        event.setCapacity(updatedEvent.getCapacity());
+        event.setAttendees(updatedEvent.getAttendees());
+        event.setMinimumAge(updatedEvent.getMinimumAge());
+        event.setBudget(updatedEvent.getBudget());
+        event.setIsFinished(updatedEvent.getIsFinished());
+        event.setIsCancelled(updatedEvent.getIsCancelled());
+        event.setIsVirtual(updatedEvent.getIsVirtual());
+        event.setIsAgeRestricted(updatedEvent.getIsAgeRestricted());
         event.setContact(updatedEvent.getContact());
         event.setAvailableVenues(updatedEvent.getAvailableVenues());
         return eventRepository.save(event);
-
     }
 
     public void deleteEvent(long id){eventRepository.deleteById(id);}
 
-    public List<Long> getAvailableVenues1(long id){
-        return eventRepository.findById(id).orElseThrow(RuntimeException::new).getAvailableVenues();
-    }
-
-    public List<Venue> getAvailableVenues(long eventId){
-        final String url = "http://localhost:8080/venues/";
+    public List<Venue> getAvailableVenues(long id){
         List<Venue> venues = new ArrayList<>();
-        List<Long> venueIds = eventRepository.findById(eventId).orElseThrow(RuntimeException::new).getAvailableVenues();
+        List<Long> venueIds = eventRepository.findById(id).orElseThrow(RuntimeException::new).getAvailableVenues();
+        System.out.println(venueIds);
 
-        for(Long id : venueIds){
-            venues.add(restTemplate.getForObject(url + id, Venue.class));
+        for(Long venueId : venueIds){
+            venues.add(venueRepository.findById(venueId).orElseThrow(RuntimeException::new));
         }
         return venues;
     }
+
+//    public List<Venue> getAvailableVenues(long eventId){
+//        final String url = "http://localhost:8080/venues/";
+//        List<Venue> venues = new ArrayList<>();
+//        List<Long> venueIds = eventRepository.findById(eventId).orElseThrow(RuntimeException::new).getAvailableVenues();
+//
+//        for(Long id : venueIds){
+//            venues.add(restTemplate.getForObject(url + id, Venue.class));
+//        }
+//        return venues;
+//    }
+
     public Event setAvailableVenues(long id, long venueId){
         Event event = eventRepository.findById(id).orElseThrow(RuntimeException::new);
 
