@@ -1,4 +1,4 @@
-package taskC.ListingService.ServiceTest;
+package taskC.ListingService.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

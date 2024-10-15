@@ -1,4 +1,4 @@
-package taskC.ListingService.ServiceTest;
+package taskC.ListingService.Service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
