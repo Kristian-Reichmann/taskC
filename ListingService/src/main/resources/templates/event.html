@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${event.name}">Event Details</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <h1 th:text="${event.name}">Event Name</h1>
+    <p><strong>Description:</strong> <span th:text="${event.description}">Event Description</span></p>
+    <p><strong>Date:</strong> <span th:text="${#temporals.format(event.date, 'yyyy-MM-dd HH:mm')}">Event Date</span></p>
+    <p><strong>Venue:</strong> <span th:text="${event.venue}">Event Venue</span></p>
+    <a th:href="@{/events}">Back to Events</a>
+</body>
+</html>

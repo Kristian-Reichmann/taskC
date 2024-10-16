@@ -11,24 +11,36 @@ import java.util.List;
 @Service
 public class EventService {
 
-    private final EventRepository eventRepository;
-
     @Autowired
-    public EventService(EventRepository eventRepository) {
-        this.eventRepository = eventRepository;
-    }
+    private EventRepository eventRepository;
 
+    /**
+     * Retrieve all events.
+     */
     public List<Event> getAllEvents() {
         return eventRepository.findAll();
     }
 
+    /**
+     * Create a new event.
+     */
     public Event createEvent(Event event) {
         return eventRepository.save(event);
     }
 
-    public Event updateEvent(Long id, Event eventDetails) {
-        Event event = eventRepository.findById(id)
+    /**
+     * Retrieve an event by its ID.
+     */
+    public Event getEventById(Long id) {
+        return eventRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Event not found with id: " + id));
+    }
+
+    /**
+     * Update an existing event.
+     */
+    public Event updateEvent(Long id, Event eventDetails) {
+        Event event = getEventById(id);
         event.setName(eventDetails.getName());
         event.setDescription(eventDetails.getDescription());
         event.setDate(eventDetails.getDate());
@@ -36,10 +48,11 @@ public class EventService {
         return eventRepository.save(event);
     }
 
+    /**
+     * Delete an event.
+     */
     public void deleteEvent(Long id) {
-        if (!eventRepository.existsById(id)) {
-            throw new ResourceNotFoundException("Event not found with id: " + id);
-        }
-        eventRepository.deleteById(id);
+        Event event = getEventById(id);
+        eventRepository.delete(event);
     }
 }

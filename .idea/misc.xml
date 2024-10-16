@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/ListingService/pom.xml" />
         <option value="$PROJECT_DIR$/TransactionService/pom.xml" />
         <option value="$PROJECT_DIR$/CatalogueInterfaceService/pom.xml" />
+        <option value="$PROJECT_DIR$/EventManagementService/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
