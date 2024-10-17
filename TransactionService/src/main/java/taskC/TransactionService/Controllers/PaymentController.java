@@ -13,23 +13,27 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("/payment")
+@RestController
+@RequestMapping("/api/payment")
 public class PaymentController {
-    //@Autowired
+
+    @Autowired
     private PaymentService paymentService;
 
 
-    public PaymentController(PaymentService paymentService){
+    /*public PaymentController(PaymentService paymentService){
         this.paymentService = paymentService;
-    }
-
+    }*/
 
     @PostMapping
-    @ResponseBody
-    public ResponseEntity<Payment> createPayment(@Valid @RequestBody PaymentRequest request) {
-        Payment payment = paymentService.processPayment(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(payment);
+    public ResponseEntity<Payment> createPayment(@Valid @RequestBody Payment payment) {
+        Payment createdPayment = paymentService.createPayment(payment);
+        return ResponseEntity.ok(createdPayment);
+    }
+
+    @GetMapping
+    public List<Payment> getAllPayments(){
+        return paymentService.getAllPayments();
     }
 
     //Just trying stuff from the labs
@@ -45,11 +49,14 @@ public class PaymentController {
         */
 
 
-
+    /*
     @GetMapping("/findAllBookings")
     @ResponseBody
     public ResponseEntity<List<Payment>> listPayments() {
         List<Payment> payments = paymentService.getAllPayments();
         return ResponseEntity.ok(payments);
     }
+    */
+
+
 }

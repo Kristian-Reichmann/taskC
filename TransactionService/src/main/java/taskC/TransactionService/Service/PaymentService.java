@@ -15,7 +15,16 @@ public class PaymentService {
     @Autowired
     private PaymentRepository paymentRepository;
 
-    public Payment processPayment(PaymentRequest request){
+    public List<Payment> getAllPayments() {
+        return paymentRepository.findAll();
+    }
+
+    public Payment createPayment(Payment payment){
+        return paymentRepository.save(payment);
+    }
+
+
+    public Payment updatePayment(PaymentRequest request){
         Payment payment = new Payment();
         payment.setBookingId(request.getBookingId());
         payment.setAmount(request.getAmount());
@@ -24,7 +33,5 @@ public class PaymentService {
         return paymentRepository.save(payment);
     }
 
-    public List<Payment> getAllPayments() {
-        return paymentRepository.findAll();
-    }
+
 }
