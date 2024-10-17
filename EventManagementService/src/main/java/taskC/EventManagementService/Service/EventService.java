@@ -1,5 +1,6 @@
 package taskC.EventManagementService.Service;
 
+import taskC.EventManagementService.Controllers.dto.EventDTO;
 import taskC.EventManagementService.Controllers.dto.VenueDTO;
 import taskC.EventManagementService.Models.Event;
 import taskC.EventManagementService.Models.Venue;
@@ -42,7 +43,6 @@ public class EventService {
     }
 
     public Event getEvent(long id){
-        System.out.println("Event id: " +id);
         return eventRepository.findById(id).orElseThrow(RuntimeException::new);
     }
 
@@ -89,6 +89,15 @@ public class EventService {
 //            venues.add(restTemplate.getForObject(url + id, Venue.class));
 //        }
 //        return venues;
+//    }
+
+
+//    public List<Event> fetchEvents(){
+//        final String url = "http://localhost:8080/events";
+//        List<Event> events = new ArrayList<>();
+//        events.add(restTemplate.getForObject(url, Event.class));
+//
+//        return events;
 //    }
 
     public Event setAvailableVenues(long id, long venueId){
