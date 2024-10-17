@@ -21,7 +21,7 @@ public class Event extends AbstractAggregateRoot<Event> {
     private String description;
     private String startTime;
     private String endTime;
-    private int duration;
+    private int duration; //in days
     private int capacity; //total number of tickets available
     private int attendees; //number of people attending event
     private int minimumAge;

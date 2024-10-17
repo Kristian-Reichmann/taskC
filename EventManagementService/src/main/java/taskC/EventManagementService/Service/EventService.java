@@ -2,6 +2,7 @@ package taskC.EventManagementService.Service;
 
 import taskC.EventManagementService.Controllers.dto.EventDTO;
 import taskC.EventManagementService.Controllers.dto.VenueDTO;
+import taskC.EventManagementService.Models.Contact;
 import taskC.EventManagementService.Models.Event;
 import taskC.EventManagementService.Models.Venue;
 import taskC.EventManagementService.Repositories.ContactRepository;
@@ -39,6 +40,8 @@ public class EventService {
     }
 
     public Event createEvent(Event newEvent) {
+        Contact contact = new Contact();
+        contactRepository.save(newEvent.getContact());
         return eventRepository.save(newEvent);
     }
 
@@ -49,7 +52,9 @@ public class EventService {
     //Update the specified event
     public Event updateEvent(long id, Event updatedEvent){
         Event event = eventRepository.findById(id).orElseThrow(RuntimeException::new);
-        event.setName(updatedEvent.getName());
+        Contact contact = new Contact();
+        contactRepository.save(updatedEvent.getContact());
+        event.setName(updatedEvent.getName());0
         event.setDescription(updatedEvent.getDescription());
         event.setStartTime(updatedEvent.getStartTime());
         event.setEndTime(updatedEvent.getEndTime());
