@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import taskC.ListingService.Exceptions.ResourceNotFoundException;
 import taskC.ListingService.Models.Event;
 import taskC.ListingService.Repositories.EventRepository;
+import
 
 import java.util.List;
 
@@ -19,6 +20,14 @@ public class EventService {
      */
     public List<Event> getAllEvents() {
         return eventRepository.findAll();
+    }
+
+    public List<Event> fetchEvents(){
+        final String url = "http://localhost:8080/events";
+        List<Event> events = new ArrayList<>();
+        events.add(restTemplate.getForObject(url, Event.class));
+
+        return events;
     }
 
     /**
