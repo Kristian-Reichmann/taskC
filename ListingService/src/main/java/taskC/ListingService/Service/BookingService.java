@@ -2,7 +2,7 @@ package taskC.ListingService.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import taskC.ListingService.dto.BookingDTO;
+import taskC.ListingService.Controllers.dto.BookingDTO;
 import taskC.ListingService.Exceptions.ResourceNotFoundException;
 import taskC.ListingService.Models.Booking;
 import taskC.ListingService.Repositories.BookingRepository;

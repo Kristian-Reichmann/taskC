@@ -3,7 +3,7 @@ package taskC.ListingService.Controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import taskC.ListingService.dto.FavoriteDTO;
+import taskC.ListingService.Controllers.dto.FavoriteDTO;
 import taskC.ListingService.Models.Favorite;
 import taskC.ListingService.Service.FavoriteService;
 

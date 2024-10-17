@@ -55,4 +55,31 @@ public class EventService {
         Event event = getEventById(id);
         eventRepository.delete(event);
     }
+
+     public void printAllEventDetails() {
+        List<Event> events = getAllEvents();
+        if (events.isEmpty()) {
+            System.out.println("No events found.");
+        } else {
+            for (Event event : events) {
+                System.out.println("Event ID: " + event.getId());
+                System.out.println("Name: " + event.getName());
+                System.out.println("Description: " + event.getDescription());
+                System.out.println("Date: " + event.getDate());
+                System.out.println("Venue: " + event.getVenue());
+                System.out.println("---------------------------------");
+            }
+        }
+    }
+
+    public void printEventDetailsById(Long id) {
+        Event event = getEventById(id);
+        System.out.println("Event ID: " + event.getId());
+        System.out.println("Name: " + event.getName());
+        System.out.println("Description: " + event.getDescription());
+        System.out.println("Date: " + event.getDate());
+        System.out.println("Venue: " + event.getVenue());
+        System.out.println("---------------------------------");
+    }
 }
+

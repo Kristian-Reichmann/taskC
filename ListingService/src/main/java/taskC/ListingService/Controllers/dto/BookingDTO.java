@@ -1,4 +1,4 @@
-package taskC.ListingService.dto;
+package taskC.ListingService.Controllers.dto;
 
 import jakarta.validation.constraints.NotNull;
 
