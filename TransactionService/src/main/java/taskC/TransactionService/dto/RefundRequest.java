@@ -1,14 +1,27 @@
 package taskC.TransactionService.dto;
 
+import jakarta.validation.constraints.NotNull;
+
 public class RefundRequest {
-    private Long paymentId;
+
+    @NotNull
+    private Long bookingId;
     private Double amount;
 
-    public Long getPaymentId() {
-        return paymentId;
+    public Long getBookingId() {
+        return bookingId;
+    }
+
+    public void setbookingId(Long bookingId){
+        this.bookingId = bookingId;
     }
 
     public Double getAmount() {
         return this.amount;
     }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
 }

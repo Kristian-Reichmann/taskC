@@ -20,11 +20,6 @@ public class PaymentController {
     @Autowired
     private PaymentService paymentService;
 
-
-    /*public PaymentController(PaymentService paymentService){
-        this.paymentService = paymentService;
-    }*/
-
     @PostMapping
     public ResponseEntity<Payment> createPayment(@Valid @RequestBody Payment payment) {
         Payment createdPayment = paymentService.createPayment(payment);
@@ -35,28 +30,5 @@ public class PaymentController {
     public List<Payment> getAllPayments(){
         return paymentService.getAllPayments();
     }
-
-    //Just trying stuff from the labs
-        /*
-    @PostMapping
-    @ResponseBody
-    public Payment createPayment(@RequestBody PaymentRequest paymentRequest){
-        System.out.println("payment complete"+paymentRequest.getBookingId());
-         Long bookingId = paymentService.
-            //paymentRequestDTO));
-         return bookingId;
-        )
-        */
-
-
-    /*
-    @GetMapping("/findAllBookings")
-    @ResponseBody
-    public ResponseEntity<List<Payment>> listPayments() {
-        List<Payment> payments = paymentService.getAllPayments();
-        return ResponseEntity.ok(payments);
-    }
-    */
-
 
 }

@@ -11,20 +11,35 @@ import java.time.LocalDateTime;
 public class Refund {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private Long paymentId;
+    private Long id;
+    private Long bookingId;
     private Double amount;
-    private String status;
 
 
-    public void SetPaymentId(Long id) {
+
+    public void setId(Long id){
         this.id = id;
     }
-    public void SetAmount(Double amount){
+
+    public Long getId(){
+        return id;
+    }
+
+    public Long getBookingId() {
+        return bookingId;
+    }
+
+    public void setBookingId(Long bookingId) {
+        this.bookingId = bookingId;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount){
         this.amount = amount;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+
 }
