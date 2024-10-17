@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Event</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <h1>Edit Event</h1>
+    <form th:action="@{'/events/edit/' + ${event.id}}" th:object="${event}" method="post">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" th:field="*{name}" required />
+            <span th:if="${#fields.hasErrors('name')}"
+                  th:errors="*{name}">Name Error</span>
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <textarea id="description" th:field="*{description}" required></textarea>
+            <span th:if="${#fields.hasErrors('description')}"
+                  th:errors="*{description}">Description Error</span>
+        </div>
+        <div>
+            <label for="date">Date:</label>
+            <input type="datetime-local" id="date" th:field="*{date}" required />
+            <span th:if="${#fields.hasErrors('date')}"
+                  th:errors="*{date}">Date Error</span>
+        </div>
+        <div>
+            <label for="venue">Venue:</label>
+            <input type="text" id="venue" th:field="*{venue}" required />
+            <span th:if="${#fields.hasErrors('venue')}"
+                  th:errors="*{venue}">Venue Error</span>
+        </div>
+        <div>
+            <button type="submit">Update Event</button>
+            <a th:href="@{/events}">Cancel</a>
+        </div>
+    </form>
+</body>
+</html>
