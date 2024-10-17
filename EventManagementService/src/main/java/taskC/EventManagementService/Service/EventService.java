@@ -54,7 +54,7 @@ public class EventService {
         Event event = eventRepository.findById(id).orElseThrow(RuntimeException::new);
         Contact contact = new Contact();
         contactRepository.save(updatedEvent.getContact());
-        event.setName(updatedEvent.getName());0
+        event.setName(updatedEvent.getName());
         event.setDescription(updatedEvent.getDescription());
         event.setStartTime(updatedEvent.getStartTime());
         event.setEndTime(updatedEvent.getEndTime());
