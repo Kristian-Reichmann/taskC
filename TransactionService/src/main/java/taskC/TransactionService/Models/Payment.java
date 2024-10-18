@@ -48,7 +48,4 @@ public class Payment {
     public String getPaymentMethod(){
         return paymentMethod;
     }
-
-
-    //Other getters and setters...
 }

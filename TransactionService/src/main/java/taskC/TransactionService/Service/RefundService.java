@@ -2,7 +2,6 @@ package taskC.TransactionService.Service;
 
 import org.springframework.stereotype.Service;
 
-
 import taskC.TransactionService.Models.Payment;
 import taskC.TransactionService.Models.Refund;
 import taskC.TransactionService.Repositories.PaymentRepository;
@@ -20,14 +19,21 @@ public class RefundService {
     @Autowired
     private PaymentRepository paymentRepository;
 
+    public List<Refund> getAllRefunds() {
+        return refundRepository.findAll();
+    }
+
+    public Refund createRefund(Refund refund){
+        return refundRepository.save(refund);
+    }
+/*
     public Refund processRefund(RefundRequest request){
-        Payment payment = paymentRepository.findById(request.getPaymentId())
+        Payment payment = paymentRepository.findById(request.getBookingId())
                 .orElseThrow(() -> new ResourceNotFoundException("Payment not found"));
 
         Refund refund = new Refund();
-        refund.SetPaymentId(payment.getId());
-        refund.SetAmount(request.getAmount());
-        refund.setStatus("PENDING");
+        refund.setBookingId(payment.getId());
+        refund.setAmount(request.getAmount());
         return refundRepository.save(refund);
     }
 
@@ -35,8 +41,6 @@ public class RefundService {
         return refundRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Refund not found"));
     }
 
-    public List<Refund> getAllRefunds() {
-        return refundRepository.findAll();
-    }
+*/
 
 }
